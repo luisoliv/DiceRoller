@@ -11,7 +11,7 @@ var lineReader = require('readline').createInterface(
 });
 
 //functions and procedures
-exports.openFile = function(filename, result)
+exports.openFile = function(filename, result, x, y)
 {
      //@params are (FILENAME, err, fileStat)
     fs.stat(filename, function(err, fileStat)
@@ -24,7 +24,12 @@ exports.openFile = function(filename, result)
         else 
         {
             if (fileStat.isFile()) //it exist and is a file
+			{
+				var timestamp = new Date();
+				timestamp = timestamp.toLocaleString();				
+				result = timestamp +" from /"+x+"d"+y+" "+ result;
                 fs.appendFile(filename , result+"\n");
+			}
             else if (fileStat.isDirectory()) //if it is an actual folder/directory
                 console.log('Directory found. (try to make a '+filename+' in the main folder of this program');
         }

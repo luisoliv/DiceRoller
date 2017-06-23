@@ -55,7 +55,7 @@ function parser(command)
 		console.log(result);
 		
 		
-		fileBuffer.openFile('logs.txt', result);
+		fileBuffer.openFile('logs.txt', result, x, y);
 	}
 	else if(command === "help")
 		showHelp();
