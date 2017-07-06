@@ -40,22 +40,25 @@ function rollDices(x,y)
 function parser(command)
 {
 	var cmd;
-	var x,y;
-
+	var x,y,result;
+    
 	if(command[0] == '/') //then it is an actual command
 	{
-		cmd = command.split("d"); //dividing quantity and size of dices
-		x = cmd[0].split("/"); //removing the command character
-		y = cmd[1];
-		x = x.splice(-1,1); //removing the array post left by "split"
-		x = parseInt(x);
-
-		var result = rollDices(x,y);
+	    command = command.substring(1);
+	    
+	    if(/^\d{1,2}d\d{1,2}$/.test(command))
+	    {
+	        cmd = command.split("d"); //dividing quantity and size of dices
+		    x = parseInt(cmd[0]);
+		    y = parseInt(cmd[1]);
+            
+		    result = rollDices(x,y);
+		    console.log(result);
 		
-		console.log(result);
-		
-		
-		fileBuffer.openFile('logs.txt', result, x, y);
+		    fileBuffer.openFile('logs.txt', result, x, y);
+	    }
+	    else
+	        console.log("Error, invalid command, please try it again");
 	}
 	else if(command === "help")
 		showHelp();
@@ -97,5 +100,5 @@ function main()
 	inputLoop(); 
 	//doing an actual loop with an input stdin is harder
 	// than i though due asynchronous nature of nodeJS
-	//so it's a pending task for 0.2 version of the dice roller
+	//so it's a pending task for 0.4 version of the dice roller
 }

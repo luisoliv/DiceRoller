@@ -7,9 +7,9 @@ Features :
 * Made with nodeJS so you can run it in your favorite platform with no worries
 * No dependencies outside core nodeJS libraries, so it's just extract and run.
 * Logging functionality + timestamp and rolls in logfile.
+* Modify the command input loop to detect the commands by a regex
 
 Pending Features :
 * A direct-not-asynchronous inputLoop, so the program doesn't quit after each roll. 
 * An extra command to quickly view the logfile from the inside the program.
 * The aditional feature of adding an small tag or description to every roll (and logging it aswell)
-* Modify the command input loop to detect the commands by a regex
